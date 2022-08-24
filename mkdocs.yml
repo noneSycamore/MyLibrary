@@ -1,0 +1,36 @@
+site_name: Sycamore の Library
+site_author: Sycamore
+
+theme:
+    name: material
+    palette:
+        scheme: slate
+        primary: blue grey
+        accent: indigo
+    language: zh
+    favicon: images\default_icons\favicon.png
+    features:
+        - navigation.tabs
+        - navigation.tabs.sticky
+extra:
+    generator: false
+    social:
+        - icon: fontawesome/brands/github
+          link: https://github.com/nonesycamore
+          name: SycamoreのGithub
+        - icon: fontawesome/brands/docker
+          link: https://hub.docker.com/repository/docker/nonesycamore/mydocker-image
+          name: SycamoreのDocker Hub
+copyright: Copyright &copy; 2022 - Sycamore
+markdown_extensions:
+    - toc:
+        permalink: True
+    - footnotes
+    - tables
+    - md4mathjax
+    - mkpatcher
+    - markdown_cjk_spacing.cjk_spacing
+nav:
+    - Home: index.md
+    - Math_modeling: Math_modeling/Assignment 1.md
+    - Python: Python/简单计算器的实现.md
