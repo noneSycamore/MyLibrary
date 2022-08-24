@@ -1,6 +1,6 @@
 site_name: Sycamore の Library
 site_author: Sycamore
-
+repo_url: https://github.com/nonesycamore/MyLibrary
 theme:
     name: material
     palette:

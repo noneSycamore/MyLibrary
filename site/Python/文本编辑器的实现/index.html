@@ -1,0 +1,773 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+        <meta name="author" content="Sycamore">
+      
+      
+      <link rel="icon" href="../../images/default_icons/favicon.png">
+      <meta name="generator" content="mkdocs-1.3.1, mkdocs-material-8.4.1">
+    
+    
+      
+        <title>python 文本编辑器的实现 - Sycamore の Library</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.69437709.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.cbb835fc.min.css">
+        
+          
+          
+          <meta name="theme-color" content="#546d78">
+        
+      
+      
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="blue-grey" data-md-color-accent="indigo">
+  
+    
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#python" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../.." title="Sycamore の Library" class="md-header__button md-logo" aria-label="Sycamore の Library" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Sycamore の Library
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              python 文本编辑器的实现
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="清空当前内容" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/nonesycamore/MyLibrary" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.1.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../.." class="md-tabs__link">
+      Home
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../../Math_modeling/Assignment%201/" class="md-tabs__link">
+      Math_modeling
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../%E7%AE%80%E5%8D%95%E8%AE%A1%E7%AE%97%E5%99%A8%E7%9A%84%E5%AE%9E%E7%8E%B0/" class="md-tabs__link">
+      Python
+    </a>
+  </li>
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Sycamore の Library" class="md-nav__button md-logo" aria-label="Sycamore の Library" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    Sycamore の Library
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/nonesycamore/MyLibrary" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.1.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        Home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Math_modeling/Assignment%201/" class="md-nav__link">
+        Math_modeling
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E7%AE%80%E5%8D%95%E8%AE%A1%E7%AE%97%E5%99%A8%E7%9A%84%E5%AE%9E%E7%8E%B0/" class="md-nav__link">
+        Python
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    前言
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    系统概述
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    系统设计
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    界面设计
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    代码实现
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+  <a href="https://github.com/nonesycamore/MyLibrary/edit/master/docs/Python/文本编辑器的实现.md" title="编辑此页" class="md-content__button md-icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25Z"/></svg>
+  </a>
+
+
+
+<h1 id="python">python 文本编辑器的实现<a class="headerlink" href="#python" title="Permanent link">&para;</a></h1>
+<h2 id="_1">前言<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<p>一个简单的文本编辑器，基本功能都有了，（￣ ︶ ￣） ↗　
+最满意的部分是，能显示行号，加了快捷键，还有查找功能的实现   (‾◡◝)
+emm...
+更改主题的功能感觉也不错，
+就是感觉，自己搞的有点丑。。。&lt;(＿　＿)&gt;</p>
+<h2 id="_2">系统概述<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p>目标是设计开发一个简单的多文档文本编辑器 SimpleMDIExample ，
+可以新建、打开、保存、另存为一个文本文件；
+可对文本进行撤销、恢复、剪贴、复制、粘贴、全选操作；
+拥有查找功能；
+添加快捷键的方式实现以上功能；
+可以选择显示行号，高亮当前行、更换编辑器主题。</p>
+<h2 id="_3">系统设计<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<p>具体功能描述如下：
+<strong>打开已存在文档</strong>：可以打开文本文档（不限 txt 格式），读取文件内容并将其显示在文本框中。
+<strong>新建文档</strong>：标题置为 New ，并将文本编辑框处于空白状态。
+<strong>保存</strong>（另存为）文档：将文本编辑框中的文本保存到文本文件中，可设置为任意类型的文件。
+<strong>撤销</strong>：撤去文本框内前一步进行的操作。
+<strong>恢复</strong>：恢复撤去的操作。
+<strong>剪贴</strong>：删去选中的文字，并复制选中的文字到剪贴板；<strong>复制</strong>：复制选中的文字到剪贴板；<strong>粘贴</strong>：将复制的文字粘贴到文本框内对应位置；<strong>全选</strong>：选中文本框内全部的文字
+<strong>查找</strong>：在文本框内搜索要查找的字符（串），并反馈字符（串）个数且高亮文本框内查找到的字符（串），退出查找功能后高亮消失。
+<strong>显示行号</strong>：添加侧栏，记录文本框内已有文字的行号，实时更新。
+<strong>高亮当前行</strong>：高亮光标所在行，并随光标上下移动实时改变。
+<strong>更换编辑器主题</strong>：可以更换文本框以及侧边栏的背景颜色。</p>
+<h2 id="_4">界面设计<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<p>1.主要页面：</p>
+<p><img alt="" src="https://cdn.jsdelivr.net/gh/noneSycamore/whitzard_cdn/wp-content/uploads/2021/09/editor1.png" /></p>
+<p>2.查找窗口：</p>
+<p><img alt="" src="https://cdn.jsdelivr.net/gh/noneSycamore/whitzard_cdn/wp-content/uploads/2021/09/editor2.png" /></p>
+<p><img alt="" src="https://cdn.jsdelivr.net/gh/noneSycamore/whitzard_cdn/wp-content/uploads/2021/09/editor3.png" /></p>
+<h2 id="_5">代码实现<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
+<pre><code class="language-python">from tkinter import *
+from tkinter.ttk import Scrollbar
+from tkinter import filedialog, messagebox
+import os
+
+theme_color = {  # line_bar,content
+    'Default': '#DCDCDC.#FFFAFA',
+    'lavender': '#F0F8FF.#E6E6FA',
+    'SlateGray': '#9FB6CD.#B9D3EE',
+    'Ivory': '#CDCDC1.#EEEEE0',
+    'Honeydew': '#C1CDC1.#E0EEE0',
+    'LavenderBlush': '#CDC1C5.#EEE0E5',
+}
+
+ICONS = ['new_file', 'open_file', 'save',
+         'undo', 'redo', 'cut', 'copy', 'paste', 'find_text']
+
+icon_tmp=[]
+
+def Editor(root):
+    # 创建菜单栏
+    def create_menu():
+        global Show_number,Theme_choice,Highlight
+        menu = Menu(root)
+        File_menu = Menu(menu, tearoff=0)
+        File_menu.add_command(label='新建', accelerator='Ctrl+N', command=New_file)
+        File_menu.add_command(label='打开', accelerator='Ctrl+O', command=Open_file)
+        File_menu.add_command(label='保存', accelerator='Ctrl+S', command=Save_file)
+        File_menu.add_command(label='另存为', accelerator='Shift+Ctrl+S', command=Save)
+        File_menu.add_separator()
+        File_menu.add_command(label='退出', accelerator='Alt+F4', command=Exit)
+
+        # 文件菜单
+        menu.add_cascade(label='文件', menu=File_menu)
+        Edit_menu = Menu(menu, tearoff=0)
+        Edit_menu.add_command(label='撤销', accelerator='Ctrl+Z', command=lambda :Edit('撤销'))
+        Edit_menu.add_command(label='恢复', accelerator='Ctrl+Y / Shift+Ctrl+Z', command=lambda :Edit('恢复'))
+        Edit_menu.add_separator()
+        Edit_menu.add_command(label='剪切', accelerator='Ctrl+X', command=lambda :Edit('剪切'))
+        Edit_menu.add_command(label='复制', accelerator='Ctrl+C', command=lambda :Edit('复制'))
+        Edit_menu.add_command(label='粘贴', accelerator='Ctrl+V', command=lambda :Edit('粘贴'))
+        Edit_menu.add_separator()
+        Edit_menu.add_command(label='查找', accelerator='Ctrl+F', command=find_text)
+        Edit_menu.add_separator()
+        Edit_menu.add_command(label='全选', accelerator='Ctrl+A', command=All)
+        menu.add_cascade(label='编辑', menu=Edit_menu)
+
+        # 视图菜单
+        View_menu = Menu(menu, tearoff=0)
+        Show_number = IntVar()
+        Show_number.set(0)
+        View_menu.add_checkbutton(label='显示行号', variable=Show_number,
+            command=If_update)
+        Highlight = IntVar()
+        Highlight.set(0)
+        View_menu.add_checkbutton(label='高亮当前行', onvalue=1, offvalue=0, \
+            variable=Highlight, command=Highlight_line)
+        # 视图内创建主题副菜单
+        Themes_menu = Menu(menu, tearoff=0)
+        View_menu.add_cascade(label='主题', menu=Themes_menu)
+        Theme_choice = StringVar()
+        Theme_choice.set('Default')
+        for k in sorted(theme_color):
+            Themes_menu.add_radiobutton(label=k, variable=Theme_choice, command=change_theme)
+        menu.add_cascade(label='视图', menu=View_menu)
+
+        root[&quot;menu&quot;] = menu
+
+    # 创建快捷菜单栏
+    def create_shortcut():
+        shortcut = Frame(root, height=25, background='#FDF5E6')
+        shortcut.pack(fill='x')
+
+        for i, icon in enumerate(ICONS):
+            tool_icon = PhotoImage(file='img/%s.gif' % (icon,))
+            tool_botton = Button(shortcut, image=tool_icon,
+                          command=shortcut_action(icon))
+
+            tool_botton.pack(side='left')
+            icon_tmp.append(tool_icon)
+
+    def shortcut_action(types, event=None):
+        def tmp():
+            if (types == &quot;new_file&quot;):
+                New_file()
+            elif (types == &quot;open_file&quot;):
+                Open_file()
+            elif (types == &quot;save&quot;):
+                Save_file()
+            elif (types == &quot;undo&quot;):
+                content.event_generate(&quot;&lt;&lt;Undo&gt;&gt;&quot;)
+            elif (types == &quot;redo&quot;):
+                content.event_generate(&quot;&lt;&lt;Redo&gt;&gt;&quot;)
+            elif (types == &quot;cut&quot;):
+                content.event_generate(&quot;&lt;&lt;Cut&gt;&gt;&quot;)
+            elif (types == &quot;copy&quot;):
+                content.event_generate(&quot;&lt;&lt;Copy&gt;&gt;&quot;)
+            elif (types == &quot;paste&quot;):
+                content.event_generate(&quot;&lt;&lt;Paste&gt;&gt;&quot;)
+            elif (types == &quot;find_text&quot;):
+                find_text()
+            if (types != &quot;copy&quot; and type != &quot;save&quot;):
+                If_update()
+        return tmp
+
+    # 创建文本框处的主要部件
+    def create_body():
+        global content,line_bar
+        # 创建行号栏
+        line_bar = Text(root, width=3, padx=3, takefocus=0, border=0,
+                               background='#DCDCDC', state='disabled')
+        line_bar.pack(side='left', fill='y')
+
+        # 创建输入框
+        content = Text(root, wrap='none', background='#FFFAFA', undo=True)
+        content.pack(expand='yes', fill='both')
+
+        content.bind('&lt;Control-N&gt;', New_file)
+        content.bind('&lt;Control-n&gt;', New_file)
+        content.bind('&lt;Control-O&gt;', Open_file)
+        content.bind('&lt;Control-o&gt;', Open_file)
+        content.bind('&lt;Control-S&gt;', Save_file)
+        content.bind('&lt;Control-s&gt;', Save_file)
+        content.bind('&lt;Control-A&gt;', All)
+        content.bind('&lt;Control-a&gt;', All)
+        content.bind('&lt;Control-f&gt;', find_text)
+        content.bind('&lt;Control-F&gt;', find_text)
+        content.bind('&lt;Shift-Control-Z&gt;',lambda x:Edit('恢复'))
+        content.tag_configure('active_line', background='#EEEEE0')
+
+        # 创建滚动条
+        scroll_barr = Scrollbar(content, orient=VERTICAL)
+        scroll_barr[&quot;command&quot;] = content.yview
+        content[&quot;yscrollcommand&quot;] = scroll_barr.set
+        scroll_barr.pack(side='right', fill='y')
+
+        scroll_barb = Scrollbar(content, orient=HORIZONTAL)
+        scroll_barb[&quot;command&quot;] = content.xview
+        content[&quot;xscrollcommand&quot;] = scroll_barb.set
+        scroll_barb.pack(side='bottom', fill='x')
+
+    def If_update():
+        global Show_number
+        if(Show_number.get()):
+            Update_linenum1()
+            content.bind(&quot;&lt;Return&gt;&quot;, lambda x: Update_linenum1())
+        else:
+            Update_linenum2()
+            content.bind(&quot;&lt;Return&gt;&quot;, lambda x: Update_linenum2())
+
+    def Update_linenum1():
+        global line_bar
+        row, col = content.index(&quot;end&quot;).split('.')
+        line_num_content = &quot;\n&quot;.join([str(i) for i in range(1, int(row)+1)])
+        line_bar.config(state='normal')
+        line_bar.delete('1.0', 'end')
+        line_bar.insert('1.0', line_num_content)
+        line_bar.config(state='disabled')
+
+    def Update_linenum2():
+        global line_bar
+        line_bar.config(state='normal')
+        line_bar.delete('1.0', 'end')
+        line_bar.config(state='disabled')
+
+    def Highlight_line():
+        global Highlight
+        if (Highlight.get()):
+            content.tag_remove(&quot;active_line&quot;, 1.0, &quot;end&quot;)
+            content.tag_add(&quot;active_line&quot;, &quot;insert linestart&quot;, &quot;insert lineend+1c&quot;)
+            content.after(200, Highlight_line) 
+            # 不知道哪里有问题,设了after200，有时还会报超出递归上限的错
+        else:
+            content.tag_remove(&quot;active_line&quot;, 1.0, &quot;end&quot;)
+
+    def New_file(event=None):
+        global content,file_name
+        root.title(&quot;New&quot;)
+        content.delete(1.0, END)
+        file_name = None
+
+    def Open_file(event=None):
+        global file_name
+        input_file = filedialog.askopenfilename(
+            filetypes=[(&quot;所有文件&quot;, &quot;*.*&quot;), (&quot;文本文档&quot;, &quot;*.txt&quot;)])
+        if (input_file):
+            root.title(&quot;%s&quot; % os.path.basename(input_file))
+            file_name = input_file
+            content.delete(1.0, END)
+            with open(input_file, 'r', encoding='gb18030', errors='ignore') as _file:
+                content.insert(1.0, _file.read())
+            If_update()
+
+    def Save_file(event=None):
+        global file_name
+        try:
+            if not file_name:
+                Save()
+            else:
+                Write_file(file_name)
+        except:
+            messagebox.showwarning('警告','找不到保存的文件')
+
+    def Save():
+        global file_name
+        input_file = filedialog.asksaveasfilename(
+            filetypes=[(&quot;All Files&quot;, &quot;*.*&quot;), (&quot;文本文档&quot;, &quot;*.txt&quot;)])
+        if input_file:
+            file_name = input_file
+            Write_file(file_name)
+
+    def Write_file(file_name):
+        try:
+            Content = content.get(1.0, 'end')
+            with open(file_name, 'w') as the_file:
+                the_file.write(Content)
+            root.title(&quot;%s - Editor&quot; % os.path.basename(file_name))
+        except IOError:
+            messagebox.showwarning(&quot;保存&quot;, &quot;保存失败！&quot;)
+
+    def All( event=None):
+        content.tag_add('sel', '1.0', 'end')
+        return &quot;break&quot;
+
+    def change_theme():
+        global Theme_choice
+        selected_theme = Theme_choice.get()
+        bg12 = theme_color.get(selected_theme)
+        bg1_color, bg2_color = bg12.split('.')
+        content.config(bg=bg2_color)
+        line_bar.config(bg=bg1_color)
+
+    def Exit():
+        if messagebox.askokcancel(&quot;退出?&quot;, &quot;           确定退出?&quot;):
+            root.destroy()
+
+    def Edit(types, event=None):
+        if (types == &quot;撤销&quot;):
+            content.event_generate(&quot;&lt;&lt;Undo&gt;&gt;&quot;)
+        elif (types == &quot;恢复&quot;):
+            content.event_generate(&quot;&lt;&lt;Redo&gt;&gt;&quot;)
+        elif (types == &quot;剪切&quot;):
+            content.event_generate(&quot;&lt;&lt;Cut&gt;&gt;&quot;)
+        elif (types == &quot;复制&quot;):
+            content.event_generate(&quot;&lt;&lt;Copy&gt;&gt;&quot;)
+        elif (types == &quot;粘贴&quot;):
+            content.event_generate(&quot;&lt;&lt;Paste&gt;&gt;&quot;)
+        if (types != &quot;复制&quot;):
+            If_update()
+        return &quot;break&quot;
+
+    def find_text(event=None):
+        Search = Toplevel(root)
+        Search.title('查找文本')
+        Search.transient(root)
+        Search.resizable(False, False)
+        Label(Search, text=&quot;查找全部:&quot;).grid(row=0, column=0, sticky='e')
+        Search_widget = Entry(Search, width=25)
+        Search_widget.grid(row=0, column=1, padx=2, pady=2, sticky='we')
+        Search_widget.focus_set()
+        Ignore_value = IntVar()
+        Checkbutton(Search, text='忽略大小写', variable=Ignore_value) \
+            .grid(row=1, column=1, sticky='e', padx=2, pady=2)
+
+        Button(Search, text=&quot;查找&quot;, command=
+            lambda : search_result(Search_widget.get(), Ignore_value.get(), Search, Search_widget)) \
+            .grid(row=0, column=2, sticky='e' + 'w', padx=2, pady=2)
+
+        # 关闭查找窗口时消除查找字符的印记
+        def Search_result_gone():
+            content.tag_remove('match', '1.0', &quot;end&quot;)
+            Search.destroy()
+        Search.protocol('WM_DELETE_WINDOW', Search_result_gone)
+
+        return &quot;break&quot;
+
+    def search_result(key, ignore_case, Search, search_widget):
+        content.tag_remove('match', '1.0', &quot;end&quot;)
+        found = 0
+        if key:
+            start_pos = '1.0'
+            while True:
+                # nocase：忽略大小写
+                start_pos = content.search(key, start_pos, nocase=ignore_case, stopindex=&quot;end&quot;)
+                if not start_pos:
+                    break
+                end_pos = '{}+{}c'.format(start_pos, len(key))
+                content.tag_add('match', start_pos, end_pos)
+                found += 1
+                start_pos = end_pos
+            content.tag_config('match', foreground='red', background='yellow')
+        search_widget.focus_set()
+        Search.title('共发现%d个' % found)
+
+    root.protocol('WM_DELETE_WINDOW', Exit)
+    create_menu()
+    create_shortcut()
+    create_body()
+
+
+root = Tk(&quot;SimpleMDIExample&quot;)
+root.title(&quot;多文档文本编辑器&quot;)
+root.geometry('650x450')
+Editor(root)
+root.mainloop()
+</code></pre>
+
+
+
+
+              
+            </article>
+            
+          </div>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2022 - Sycamore
+    </div>
+  
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    <a href="https://github.com/nonesycamore" target="_blank" rel="noopener" title="SycamoreのGithub" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.1.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+    </a>
+  
+    
+    
+    <a href="https://hub.docker.com/repository/docker/nonesycamore/mydocker-image" target="_blank" rel="noopener" title="SycamoreのDocker Hub" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.1.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M349.9 236.3h-66.1v-59.4h66.1v59.4zm0-204.3h-66.1v60.7h66.1V32zm78.2 144.8H362v59.4h66.1v-59.4zm-156.3-72.1h-66.1v60.1h66.1v-60.1zm78.1 0h-66.1v60.1h66.1v-60.1zm276.8 100c-14.4-9.7-47.6-13.2-73.1-8.4-3.3-24-16.7-44.9-41.1-63.7l-14-9.3-9.3 14c-18.4 27.8-23.4 73.6-3.7 103.8-8.7 4.7-25.8 11.1-48.4 10.7H2.4c-8.7 50.8 5.8 116.8 44 162.1 37.1 43.9 92.7 66.2 165.4 66.2 157.4 0 273.9-72.5 328.4-204.2 21.4.4 67.6.1 91.3-45.2 1.5-2.5 6.6-13.2 8.5-17.1l-13.3-8.9zm-511.1-27.9h-66v59.4h66.1v-59.4zm78.1 0h-66.1v59.4h66.1v-59.4zm78.1 0h-66.1v59.4h66.1v-59.4zm-78.1-72.1h-66.1v60.1h66.1v-60.1z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.tabs.sticky"], "search": "../../assets/javascripts/workers/search.ecf98df9.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.config.lang": "ja", "search.config.pipeline": "trimmer, stemmer", "search.config.separator": "[\\s\\-\uff0c\u3002]+", "search.placeholder": "\u641c\u7d22", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version.title": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.9c69f0bc.min.js"></script>
+      
+    
+  </body>
+</html>

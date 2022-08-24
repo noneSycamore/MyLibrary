@@ -1,0 +1,785 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+        <meta name="author" content="Sycamore">
+      
+      
+      <link rel="icon" href="../../images/default_icons/favicon.png">
+      <meta name="generator" content="mkdocs-1.3.1, mkdocs-material-8.4.1">
+    
+    
+      
+        <title>python 拼图游戏的实现 - Sycamore の Library</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.69437709.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.cbb835fc.min.css">
+        
+          
+          
+          <meta name="theme-color" content="#546d78">
+        
+      
+      
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="blue-grey" data-md-color-accent="indigo">
+  
+    
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#python" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../.." title="Sycamore の Library" class="md-header__button md-logo" aria-label="Sycamore の Library" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Sycamore の Library
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              python 拼图游戏的实现
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="清空当前内容" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/nonesycamore/MyLibrary" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.1.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../.." class="md-tabs__link">
+      Home
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../../Math_modeling/Assignment%201/" class="md-tabs__link">
+      Math_modeling
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../%E7%AE%80%E5%8D%95%E8%AE%A1%E7%AE%97%E5%99%A8%E7%9A%84%E5%AE%9E%E7%8E%B0/" class="md-tabs__link">
+      Python
+    </a>
+  </li>
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Sycamore の Library" class="md-nav__button md-logo" aria-label="Sycamore の Library" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    Sycamore の Library
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/nonesycamore/MyLibrary" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.1.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        Home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Math_modeling/Assignment%201/" class="md-nav__link">
+        Math_modeling
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E7%AE%80%E5%8D%95%E8%AE%A1%E7%AE%97%E5%99%A8%E7%9A%84%E5%AE%9E%E7%8E%B0/" class="md-nav__link">
+        Python
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    前言~
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    系统概述
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    系统设计
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    运行界面
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    代码实现
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+  <a href="https://github.com/nonesycamore/MyLibrary/edit/master/docs/Python/拼图游戏的实现.md" title="编辑此页" class="md-content__button md-icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25Z"/></svg>
+  </a>
+
+
+
+<h1 id="python">python 拼图游戏的实现<a class="headerlink" href="#python" title="Permanent link">&para;</a></h1>
+<h2 id="_1">前言~<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<p>一个拼图游戏，做完之后感觉，功能方面和我的预期还是基本一样的 (￣ _,￣ )
+就是，这个美化做的不是很好，就先这样了 ㄟ( ▔, ▔ )ㄏ</p>
+<h2 id="_2">系统概述<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p>目标是设计出一个支持鼠标拖动拼图的游戏软件 myPuzzle ，
+可以自由选择图片，能够自定义分割的数量（就比如 3*3 的九宫格之类的），打乱顺序之后放置在不同的图片框中，用户使用鼠标拖动图片框中的图片进行拼图，
+还加了一个挑战模式</p>
+<h2 id="_3">系统设计<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<p>具体功能如下：
+    1.自由选择打算进行拼图游戏的图片。
+    2.自定义分割图片的数量。
+    3.打乱分割后的图片并重新排列在图片框内。
+    4.实现用鼠标拖动图片来交换图片顺序，达到拼图的目的。
+    5.能查看原图。
+    6.可以选择重新开始。
+    7.添加挑战模式，在倒计时结束前完成拼图。
+    8.能实时显示拼图所花的步骤
+<strong>一些小改动</strong>：
+    1.拖动的图片不会超过原图边界显示，超出则步数+1
+    2.选中的图片将随鼠标移动，且处于其他图片的上方显示
+    3.修改了 重新开始 功能的一个小 bug.</p>
+<h2 id="_4">运行界面<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<p>部分简单的画面就略去啦，消息框啥的这里也没加上（太多了）
+1.默认分割完的图片
+<img alt="" src="https://cdn.jsdelivr.net/gh/noneSycamore/whitzard_cdn/wp-content/uploads/2021/09/pt1.png" />
+2.右侧的选项
+<img alt="enter image description here" src="https://cdn.jsdelivr.net/gh/noneSycamore/whitzard_cdn/wp-content/uploads/2021/09/pt2.png" />
+3.打开文件的画面
+<img alt="enter image description here" src="https://cdn.jsdelivr.net/gh/noneSycamore/whitzard_cdn/wp-content/uploads/2021/09/pt3.png" />
+4.自由选择分割的难度，（上限为 8 ）
+<img alt="enter image description here" src="https://cdn.jsdelivr.net/gh/noneSycamore/whitzard_cdn/wp-content/uploads/2021/09/pt4.png" />
+5.挑战模式
+<img alt="enter image description here" src="https://cdn.jsdelivr.net/gh/noneSycamore/whitzard_cdn/wp-content/uploads/2021/09/pt8.png" />
+<img alt="enter image description here" src="https://cdn.jsdelivr.net/gh/noneSycamore/whitzard_cdn/wp-content/uploads/2021/09/pt11.png" /></p>
+<h2 id="_5">代码实现<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
+<pre><code class="language-python"># -*- coding: UTF-8 -*-
+from tkinter import *
+from tkinter import filedialog, messagebox
+from PIL import Image, ImageTk
+import random
+
+root=Tk(&quot;myPuzzle&quot;)
+root.title(&quot;myPuzzle&quot;)
+root.geometry('1500x800')
+cv=Canvas(root,bg=&quot;white&quot;,width=800,height=800)
+Label1=Label(root,text=&quot;0&quot;,fg=&quot;red&quot;,font = ('黑体',25))
+time_left = 60
+depth=3
+steps=0
+board=[[0,1,2],[3,4,5],[6,7,8]]
+suffixs = ['png','jpg','jpeg']
+
+index_list=[]
+Pics=[]
+Pic_path = &quot;R.jpg&quot;   #默认路径
+im = Image.open(Pic_path)  # 读取图片
+width, height= im.size
+
+wid = width   #保存原图数据并修改大小
+hei = height
+im = im.resize((int(wid*0.18*depth), int(hei*0.18*depth)), Image.ANTIALIAS)
+width, height = im.size
+w = int(width/depth)
+h = int(height/depth)
+clickID=-1   #图片随鼠标移动参数
+
+class Square:
+    def __init__(self,ID):
+        self.ID=ID
+    def draw(self,canvas,board_pos):
+        img=tkImage_list[self.ID]
+        canvas.create_image(board_pos,image=img)
+
+def load():
+    global pic_radio, depth_var
+    Label(root,text=&quot;请选择游戏难度:&quot;,font = ('黑体',15),).place(x=800,y=40+20)#int(w*depth/2.6)
+    open_file = Button(root,text='打开图片(默认R.jpg)', height=2,\
+        font = ('黑体',15), command = open_pic).place(x=int(w*0.87)+800,y=0)
+    depth_var = StringVar()
+    Label(root,text=&quot;自定义切割边数:&quot;,font = ('黑体',15)).place(x=800,y=70+25)
+    Label(root,text=&quot;(0 &lt; 边数 &lt; 9)&quot;,font = ('黑体',14),).place(x=800,y=95+25)
+    Entry(root, textvariable=depth_var).place(x=int(w*0.9)+800,y=75+25,height=40,width=190)
+    Button(root,text='确定', font = ('黑体',15), width = 16, command = newdepth)\
+        .place(x=int(w*2.01)+800,y=70+25,height=50,width=180)
+    pic_radio = IntVar()
+    pic_radio.set(3)
+    radio1 = Radiobutton(root, text='四宫格',font = ('黑体',15), \
+        value = 2,variable = pic_radio,command = catch).place(x=int(w/1.05)+800,y=40+20)
+    radio2 = Radiobutton(root,text ='九宫格',font = ('黑体',15), \
+        value=3,variable = pic_radio,command = catch).place(x=int(w*1.60)+800,y=40+20)
+    radio3 = Radiobutton(root, text='十六宫格',font = ('黑体',15), \
+        value=4,variable=pic_radio,command = catch).place(x=int(w*2.27)+800,y=40+20)
+    Button(root,text=&quot;重新开始&quot;,command=game_loop,font = ('黑体',15))\
+        .place(x=800,y=170,height=50,width=180)
+    Label(root,text=&quot;Steps:&quot;,font = ('黑体',22)).place(x=int(w*0.02)+800,y=13)
+    Button(root,text=&quot;查看原图&quot;,command=show_image,font = ('黑体',15))\
+        .place(x=800,y=320,height=50,width=180)
+    Button(root,text=&quot;挑战模式&quot;,command=challenge,font = ('黑体',15))\
+        .place(x=800,y=470,height=50,width=180)
+
+def open_pic():
+    global Pic_path
+    file_path = filedialog.askopenfilename()
+    if file_path:
+        suffix = file_path.split('.')[1]
+        if suffix in suffixs:
+            Pic_path = file_path
+            messagebox.showwarning('完成','已打开！请选择游戏难度')
+        else:
+            messagebox.showwarning('警告','请选择图片文件')
+    else:
+        messagebox.showwarning('友情提示','文件路径错误，或没有打开文件')
+    game_loop()
+
+def newdepth():
+    global depth, w, h, tkImage_list, index_list, im, width, height, board, steps
+    board = []
+    steps = 0
+    Label1[&quot;text&quot;]=str(steps)
+    tkImage_list = []
+    index_list = []
+    depth = int(depth_var.get())
+    if(depth &gt; 8):
+        messagebox.showwarning('警告','难度过大，切割数上限为8，请重新设置~')
+        return
+    if(depth &lt; 1):
+        messagebox.showwarning('警告','切割数不能小于1~')
+    im = Image.open(Pic_path)
+    im = im.resize((int(wid*0.1*depth), int(hei*0.1*depth)), Image.ANTIALIAS)
+    width, height = im.size
+    w = int(width/depth)
+    h = int(height/depth)
+    for i in range(depth):
+        board.append([])
+        for j in range(depth):
+            board[i].append(i * depth + j)
+    cut_image(im)
+    shuffle_list() 
+    for i in range(depth):
+        for j in range(depth):
+            idx=i*depth+j
+            ID=index_list[idx]
+            board[i][j]=Square(ID)
+    show_image_list()
+
+def catch():
+    global depth, w, h, tkImage_list, index_list, im, width, height, board, steps
+    board = []
+    steps = 0
+    Label1[&quot;text&quot;]=str(steps)
+    tkImage_list = []
+    index_list = []
+    depth = int(pic_radio.get())
+    im = Image.open(Pic_path)
+    im = im.resize((int(wid*0.1*depth), int(hei*0.1*depth)), Image.ANTIALIAS)
+    width, height = im.size
+    w = int(width/depth)
+    h = int(height/depth)
+    for i in range(depth):
+        board.append([])
+        for j in range(depth):
+            board[i].append(i * depth + j)
+    cut_image(im)
+    shuffle_list() 
+    for i in range(depth):
+        for j in range(depth):
+            idx=i*depth+j
+            ID=index_list[idx]
+            board[i][j]=Square(ID)
+    show_image_list()
+
+def cut_image(Pic):
+    global tkImage_list
+    for i in range(depth):
+        for j in range(depth):
+            box = (w * j, h * i, w * (j + 1), h * (i + 1))  # 需要切割的矩形区域
+            image = Pic.crop(box)
+            tkImage_list.append(ImageTk.PhotoImage(image))
+            index_list.append(i * depth + j)  # 分割图片并存进tkImage_list中
+
+def shuffle_list():
+    global index_list
+    reverseCount = 0
+    random.shuffle(index_list)
+    for i in range(len(index_list)):
+        for j in range(i):
+            if index_list[i] &lt; index_list[j]:
+                reverseCount += 1  # 计算逆序数
+    if reverseCount % 2 != 0:
+        shuffle_list()
+
+def show_image_list():
+    # 通过index_list展示image_list中的图片
+    num = 0
+    for index in index_list:
+        show_single_img(index, num)
+        num += 1
+
+def show_single_img(index, num):
+    #根据索引在位置num处画出单张图片
+    i = num//depth
+    j = num % depth
+    canvas=tkImage_list[index]
+    board[i][j].draw(cv,(w*(j+0.5),h*(i+0.5)))
+
+def show_image():
+    root2=Toplevel(root)
+    root2.title(&quot;原图&quot;)
+    Img = Image.open(Pic_path)
+    Img = Img.resize((int(wid*0.5), int(hei*0.5)), Image.ANTIALIAS)
+    img = ImageTk.PhotoImage(Img)
+    label_Img = Label(root2, image=img).pack()
+    root2.mainloop()
+
+def challenge():
+    global Label2,time_radio,reset
+    Label(root,text=&quot;请在倒计时结束前完成拼图！&quot;,font = ('黑体',16)).place(x=int(w*0.05)+800,y=525)
+    Label(root,text=&quot;请选择时间：&quot;,font = ('黑体',17)).place(x=int(w*0.05)+800,y=550)
+    time_radio = IntVar()
+    time_radio.set(3)
+    radio1 = Radiobutton(root, text='1 分钟',font = ('黑体',15), \
+        value=60,variable = time_radio,command = gettime).place(x=int(w*1.45)+800,y=550)
+    radio2 = Radiobutton(root,text ='2 分钟',font = ('黑体',15), \
+        value=120,variable = time_radio,command = gettime).place(x=int(w*2.40)+800,y=550)
+    radio3 = Radiobutton(root, text='3 分钟',font = ('黑体',15), \
+        value=180,variable=time_radio,command = gettime).place(x=int(w*3.3)+800,y=550)
+    Label2=Label(root,text=str(time_left),fg=&quot;red&quot;,font = ('黑体',25))
+    Label2.place(x=int(w*1.2)+800,y=608)
+    Label(root,text=&quot;倒计时:&quot;,font = ('黑体',22)).place(x=int(w*0.05)+800,y=610)
+    reset=0
+    Button(root,text=&quot;重置！&quot;,command=getreset,font = ('黑体',15))\
+        .place(x=int(w*1.95)+800,y=598,height=50,width=160)
+
+def gettime():
+    global reset
+    if(reset==3):
+        global l1,l2,l3
+        l1.place_forget()
+        l2.place_forget()
+        l3.place_forget()
+        reset=0
+    n=int(time_radio.get())
+    cut_down(n)
+
+def getreset():
+    global reset
+    reset=1
+
+def cut_down(n):
+    global Label2,time_radio,reset,l1,l2,l3
+    if n !=0:
+        Label2['text'] = str(n)
+    else:
+        messagebox.showinfo(title=&quot;警告&quot;,message=&quot;时间到！&quot;)
+        root.after_cancel(id)
+    n=n-1
+    id=root.after(1000,cut_down,n)
+    if(reset==1):
+        root.after_cancel(id)
+        Label2['text'] = time_radio.get()
+        reset=0
+    if(reset==2):
+        root.after_cancel(id)
+        l1=Label(root,text=&quot;挑战成功！你的用时为&quot;,font = ('黑体',18))
+        l1.place(x=int(w*0.05)+800,y=650)
+        l2=Label(root,text=str(int(time_radio.get())-n-1),fg=&quot;red&quot;,font = ('黑体',18))
+        l2.place(x=int(w*2.5)+800,y=650)
+        l3=Label(root,text='s',font = ('黑体',18))
+        l3.place(x=int(w*2.9)+800,y=650)
+        reset=3
+
+def StartMove(event):
+    global first_r,first_c,first_square
+    first_r=int(event.y//h)
+    first_c=int(event.x//w)
+    if first_r&lt;depth and first_c&lt;depth:
+        first_square=board[first_r][first_c]
+    board[first_r][first_c].draw(cv,(w*(first_c+0.5),h*(first_r+0.5)))
+    # 图片随鼠标移动
+    global first_x,first_y,clickID
+    allID=cv.find_closest(event.x,event.y)
+    if len(allID) &gt; 0:
+        clickID=allID[0]
+        first_x,first_y = event.x,event.y 
+
+def StopMove(event):
+    global steps,first_r,first_c,cur_r,cur_c,first_square,reset
+    cur_r=int(event.y//h)
+    cur_c=int(event.x//w)
+    if cur_r&lt;depth and cur_c&lt;depth:
+        current_square=board[cur_r][cur_c]
+        board[cur_r][cur_c]=first_square
+        board[first_r][first_c]=current_square
+        steps+=1
+        Label1[&quot;text&quot;]=str(steps)
+        cv.delete(&quot;all&quot;)
+        show_image_list()
+    else:
+        steps+=1
+        Label1[&quot;text&quot;]=str(steps)
+        cv.delete(&quot;all&quot;)
+        show_image_list()
+    if win():
+        reset=2  #重置时间设定为2，代表成功
+        messagebox.showinfo(title=&quot;恭喜&quot;,message=&quot;拼图成功！&quot;)
+    #图片随鼠标移动
+    global first_x,first_y,clickID
+    cv.move(clickID,event.x-first_x,event.y-first_y)
+    clickID=-1
+
+def OnMotion(event): #图片随鼠标移动
+    global first_x,first_y,clickID
+    if clickID!=-1:
+        cv.move(clickID,event.x-first_x,event.y-first_y)
+        first_x,first_y = event.x,event.y
+
+def win():
+    for i in range(depth):
+        for j in range(depth):
+            if board[i][j] is not None and board[i][j].ID!=i*depth+j:
+                return False
+    return True
+
+def game_loop():
+    global reset
+    reset=1
+    cv.update()
+    try:
+        depth = int(depth_var.get())
+        newdepth()
+        show_image_list()
+    except:
+        depth = int(pic_radio.get())
+        catch()
+        show_image_list()
+
+def main():
+    load()
+    Label1.place(x=int(w*0.55)+800,y=13)
+    cv.bind(&quot;&lt;ButtonPress-1&gt;&quot;,StartMove)  #绑定鼠标左键按下事件
+    cv.bind(&quot;&lt;ButtonRelease-1&gt;&quot;,StopMove) #绑定鼠标左键松开事件
+    cv.bind(&quot;&lt;B1-Motion&gt;&quot;, OnMotion) #绑定鼠标移动事件
+    cv.place(x=0,y=0)
+    game_loop()
+    root.mainloop()
+
+if __name__ == '__main__':
+    main()
+
+</code></pre>
+
+
+
+
+              
+            </article>
+            
+          </div>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2022 - Sycamore
+    </div>
+  
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    <a href="https://github.com/nonesycamore" target="_blank" rel="noopener" title="SycamoreのGithub" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.1.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+    </a>
+  
+    
+    
+    <a href="https://hub.docker.com/repository/docker/nonesycamore/mydocker-image" target="_blank" rel="noopener" title="SycamoreのDocker Hub" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.1.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M349.9 236.3h-66.1v-59.4h66.1v59.4zm0-204.3h-66.1v60.7h66.1V32zm78.2 144.8H362v59.4h66.1v-59.4zm-156.3-72.1h-66.1v60.1h66.1v-60.1zm78.1 0h-66.1v60.1h66.1v-60.1zm276.8 100c-14.4-9.7-47.6-13.2-73.1-8.4-3.3-24-16.7-44.9-41.1-63.7l-14-9.3-9.3 14c-18.4 27.8-23.4 73.6-3.7 103.8-8.7 4.7-25.8 11.1-48.4 10.7H2.4c-8.7 50.8 5.8 116.8 44 162.1 37.1 43.9 92.7 66.2 165.4 66.2 157.4 0 273.9-72.5 328.4-204.2 21.4.4 67.6.1 91.3-45.2 1.5-2.5 6.6-13.2 8.5-17.1l-13.3-8.9zm-511.1-27.9h-66v59.4h66.1v-59.4zm78.1 0h-66.1v59.4h66.1v-59.4zm78.1 0h-66.1v59.4h66.1v-59.4zm-78.1-72.1h-66.1v60.1h66.1v-60.1z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.tabs.sticky"], "search": "../../assets/javascripts/workers/search.ecf98df9.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.config.lang": "ja", "search.config.pipeline": "trimmer, stemmer", "search.config.separator": "[\\s\\-\uff0c\u3002]+", "search.placeholder": "\u641c\u7d22", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version.title": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.9c69f0bc.min.js"></script>
+      
+    
+  </body>
+</html>
