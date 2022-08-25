@@ -1,6 +1,9 @@
 # MyLibrary
 > Library to store some Scrips...
 
+# Recording my building up
+`token: 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`
+
 ## Every time before using
 > Remember to pull the repo
 ```shell
@@ -19,6 +22,6 @@ python3 Scrips_to_md.py
 python3 readin.py
 git add *
 git commit -m 'update'
-git push MyLibrary master
+git push origin master
 ```
 
