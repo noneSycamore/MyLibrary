@@ -40,17 +40,18 @@ nav:
     - Scrips:
         - Scrips/Starting.md
         - CTF:
-            - Scrips/CTF/base64_多行.md
             - Scrips/CTF/Caser_爆破.md
             - Scrips/CTF/RSA_常见.md
-            - Scrips/CTF/secret.md
             - Scrips/CTF/SHA256_验证码爆破.md
+            - Scrips/CTF/base64_多行.md
+            - Scrips/CTF/secret.md
             - Scrips/CTF/wave_音频处理.md
             - Scrips/CTF/手机键盘密码.md
         - Setup:
             - Scrips/Setup/Docker_Ubuntu1804.md
-            - Scrips/Setup/git_Setup.md
             - Scrips/Setup/Library_readin.md
             - Scrips/Setup/Ubuntu_AWD.md
             - Scrips/Setup/Ubuntu_Docker.md
             - Scrips/Setup/Ubuntu_zsh.md
+            - Scrips/Setup/git_Setup.md
+            - Scrips/Setup/Scrips_to_md.md
