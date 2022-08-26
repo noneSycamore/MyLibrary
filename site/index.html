@@ -218,9 +218,54 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Home
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="." class="md-nav__link md-nav__link--active">
         Home
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#every-time-before-using" class="md-nav__link">
+    Every time before using
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#using-mkdocs" class="md-nav__link">
+    Using Mkdocs
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#haw-to-upload" class="md-nav__link">
+    Haw to upload
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -618,6 +663,35 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#every-time-before-using" class="md-nav__link">
+    Every time before using
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#using-mkdocs" class="md-nav__link">
+    Using Mkdocs
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#haw-to-upload" class="md-nav__link">
+    Haw to upload
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -631,6 +705,36 @@
 
 
 <h1 id="welcome-to-sycamore-library">Welcome to Sycamore の Library<a class="headerlink" href="#welcome-to-sycamore-library" title="Permanent link">&para;</a></h1>
+<blockquote>
+<p>A Library to store some Scrips...</p>
+</blockquote>
+<p>Tree:</p>
+<h2 id="every-time-before-using">Every time before using<a class="headerlink" href="#every-time-before-using" title="Permanent link">&para;</a></h2>
+<blockquote>
+<p>Remember to pull the repo</p>
+</blockquote>
+<pre><code class="language-shell">git pull MyLibrary master
+</code></pre>
+<h2 id="using-mkdocs">Using Mkdocs<a class="headerlink" href="#using-mkdocs" title="Permanent link">&para;</a></h2>
+<pre><code class="language-shell">mkdocs serve    % create local service, whitch is lively uploading
+mkdocs gh-deploy        % build a static page, and upload to github gh-pages branch
+</code></pre>
+<blockquote>
+<p>Before using <code>mkdocs ghdeploy</code> to update gh-pages branch,
+<strong>Remember to fetch</strong> the repo:</p>
+</blockquote>
+<pre><code class="language-shell">git fetch
+</code></pre>
+<h2 id="haw-to-upload">Haw to upload<a class="headerlink" href="#haw-to-upload" title="Permanent link">&para;</a></h2>
+<blockquote>
+<p>uploading to Github master</p>
+</blockquote>
+<pre><code class="language-shell">python3 Scrips_to_md.py
+python3 readin.py
+git add *
+git commit -m 'update'
+git push origin master
+</code></pre>
 
 
 
