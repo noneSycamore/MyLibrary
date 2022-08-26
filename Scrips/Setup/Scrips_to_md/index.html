@@ -15,7 +15,7 @@
     
     
       
-        <title>Ubuntu_zsh - Sycamore の Library</title>
+        <title>Scrips_to_md - Sycamore の Library</title>
       
     
     
@@ -66,7 +66,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#ubuntu_zsh" class="md-skip">
+        <a href="#scrips_to_md" class="md-skip">
           跳转至
         </a>
       
@@ -99,7 +99,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Ubuntu_zsh
+              Scrips_to_md
             
           </span>
         </div>
@@ -541,21 +541,11 @@
               
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../Ubuntu_zsh/" class="md-nav__link">
         Ubuntu_zsh
       </a>
-      
     </li>
   
 
@@ -579,11 +569,21 @@
               
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="../Scrips_to_md/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         Scrips_to_md
       </a>
+      
     </li>
   
 
@@ -634,62 +634,39 @@
                 
 
 
-<h1 id="ubuntu_zsh">Ubuntu_zsh<a class="headerlink" href="#ubuntu_zsh" title="Permanent link">&para;</a></h1>
-<pre><code class="language-shell">#!/bin/bash
-act()
-{
-    echo -e &quot;\033[33m$1\033[0m&quot;
-    eval $1
-}
-ohmyzsh(){
-    curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh &gt; install.sh
-}
-act &quot;sudo apt upgrade -y&quot;
-act &quot;sudo apt install git -y&quot;
-echo -e &quot;\033[33m(+)\033[0m \033[36mzsh\033[0m install \033[32mstarting...\033[0m&quot;
-act &quot;sudo apt install zsh -y&quot; &amp;&amp; echo -e &quot;\033[33m(+)\033[0m \033[36mzsh\033[0m install \033[32msuccessful\033[0m&quot;
-act &quot;sudo chsh -s /bin/zsh&quot;
-echo -e &quot;\033[33m(+)\033[0m \033[36moh-my-zsh\033[0m install &amp; configure \033[32mstarting...\033[0m&quot;
-act &quot;apt-get -y install build-essential nghttp2 libnghttp2-dev libssl-dev&quot;
-if [ ! -f &quot;install.sh&quot; ]; then
-    echo -e &quot;\033[33m(+)\033[0m \033[36moh-my-zsh\033[0m hasn't installed&quot;
-    echo -e &quot;\033[33m(+) try to download\033[0m \033[36minstall.sh\033[0m...&quot;
-    ohmyzsh
-    tmp=$?
-    until [ $tmp -eq 0 ]
-    do
-        echo -e &quot;\033[33m(+)\033[0m \033[31mfail\033[0m to download \033[36minstall.sh\033[0m&quot;
-        echo -e &quot;\033[33mretrying...\033[0m&quot;
-        ohmyzsh
-        tmp=$?
-    done
-    echo -e &quot;\033[33m(+)\033[0m install.sh for \033[36moh-my-zsh\033[0m download \033[32msucceed\033[0m&quot;
-    act &quot;chmod +x install.sh&quot;
-    act &quot;rm -rf ~/.oh-my-zsh&quot;
-    echo -e &quot;\033[33m(+)\033[0m \033[32mrunning\033[0m \033[36minstall.sh\033[0m...&quot;
-    until sh install.sh
-    do
-        echo -e &quot;\033[33m(+)\033[0m \033[31mfail\033[0m to install \033[36moh-my-zsh\033[0m&quot;
-        act &quot;rm -rf ~/.oh-my-zsh&quot;
-        echo -e &quot;\033[33mrunning again...\033[0m&quot;
-    done
-else
-    echo -e &quot;\033[33m(+)\033[0m \033[36minstall.sh\033[0m has \033[32malready\033[0m been download&quot;
-    act &quot;git clone --depth=1 https://github.com/zsh-users/zsh-completions \${ZSH_CUSTOM:-\${ZSH:-~/.oh-my-zsh}/custom}/plugins/zsh-completions&quot;
-    act &quot;fpath+=\${ZSH_CUSTOM:-\${ZSH:-~/.oh-my-zsh}/custom}/plugins/zsh-completions/src&quot;
-    act &quot;git clone --depth=1 https://github.com/zsh-users/zsh-autosuggestions.git \${ZSH_CUSTOM:-\${ZSH:-~/.oh-my-zsh}/custom}/plugins/zsh-autosuggestions&quot;
-    act &quot;git clone --depth=1 https://github.com/zsh-users/zsh-syntax-highlighting.git \${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting&quot;
-    act &quot;sed -i '/^plugins=(.*/c plugins=(git zsh-autosuggestions zsh-syntax-highlighting)' ~/.zshrc&quot;
-    echo -e &quot;\033[33m(+)\033[0m \033[36moh-my-zsh\033[0m install &amp; configure \033[32msucceed\033[0m&quot;
-    echo -e &quot;\033[33m(+)\033[0m \033[36mzsh theme\033[0m \033[35mpowerlevel10k\033[0m install \033[32mstarting...\033[0m&quot;
-    act &quot;git clone --depth=1 https://github.com/romkatv/powerlevel10k.git \${ZSH_CUSTOM:-\$HOME/.oh-my-zsh/custom}/themes/powerlevel10k&quot;
-    act &quot;sed -i '/^ZSH_THEME=.*/c ZSH_THEME=\&quot;powerlevel10k/powerlevel10k\&quot;' ~/.zshrc&quot;
-    act &quot;rm install.sh&quot;
-    act &quot;exec zsh&quot;
-fi
-echo -e &quot;\033[33m(+)\033[0m \033[36mzsh\033[0m install &amp; configure \033[32msucceed\033[0m&quot;
-exit
+<h1 id="scrips_to_md">Scrips_to_md<a class="headerlink" href="#scrips_to_md" title="Permanent link">&para;</a></h1>
+<pre><code class="language-python">import os
 
+def findAllFile(base):
+    for root, ds, fs in os.walk(base):
+        for f in fs:
+            fullname = os.path.join(root, f)
+            yield fullname.replace('\\', '/')
+
+def get_header(path):
+    return path.split('/')[-1][:-3]
+
+def transfer(path, type):
+    f = open(path, 'r+', encoding=&quot;utf-8&quot;)
+    content = f.read()
+    content = '# ' + get_header(path) + '\n```' + type + '\n' +content + '\n```'
+    f.close()
+    fw = open(path, 'w+', encoding=&quot;utf-8&quot;)
+    fw.write(content)
+    fw.close()
+    os.rename(path, path[:-2]+'md')
+
+
+def main():
+    base = 'docs/'
+    for i in findAllFile(base):
+        if i[-2:] == 'py':
+            transfer(i, 'python')
+        elif i[-2:] == 'sh':
+            transfer(i, 'shell')
+
+if __name__ == '__main__':
+    main()
 </code></pre>
 
 
@@ -709,7 +686,7 @@ exit
     <nav class="md-footer__inner md-grid" aria-label="页脚" >
       
         
-        <a href="../Ubuntu_Docker/" class="md-footer__link md-footer__link--prev" aria-label="上一页: Ubuntu_Docker" rel="prev">
+        <a href="../git_Setup/" class="md-footer__link md-footer__link--prev" aria-label="上一页: Git Seting up" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
           </div>
@@ -718,26 +695,11 @@ exit
               <span class="md-footer__direction">
                 上一页
               </span>
-              Ubuntu_Docker
-            </div>
-          </div>
-        </a>
-      
-      
-        
-        <a href="../git_Setup/" class="md-footer__link md-footer__link--next" aria-label="下一页: Git Seting up" rel="next">
-          <div class="md-footer__title">
-            <div class="md-ellipsis">
-              <span class="md-footer__direction">
-                下一页
-              </span>
               Git Seting up
             </div>
           </div>
-          <div class="md-footer__button md-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
-          </div>
         </a>
+      
       
     </nav>
   
