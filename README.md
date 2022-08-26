@@ -2,7 +2,7 @@
 > Library to store some Scrips...
 
 ## Recording my building up
-`token: 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`
+`token: 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`
 
 ## Every time before using
 > Remember to pull the repo
