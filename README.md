@@ -23,6 +23,7 @@ git fetch
 ```shell
 python3 Scrips_to_md.py
 python3 readin.py
+python3 filetree.py
 git add *
 git commit -m 'update'
 git push origin master
