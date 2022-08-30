@@ -11,8 +11,8 @@ def floder(files1, i, p):
         else:
             str += '    '*i+'- '+file1+':\n'
             files2 = os.listdir(path+'/'+p+file1)
-            p+=file1+'/'
-            floder(files2, i+1, p)
+            p2=p+file1+'/'
+            floder(files2, i+1, p2)
 
 for file in files:
     if '.' in file or file == 'images':

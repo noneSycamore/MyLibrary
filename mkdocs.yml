@@ -40,9 +40,13 @@ nav:
     - Scrips:
         - Scrips/Starting.md
         - CTF_quiz:
-            - Multiple_Chaos_Maps:
-                - Scrips/CTF_quiz/Multiple_Chaos_Maps/chaos.py
-                - Scrips/CTF_quiz/Multiple_Chaos_Maps/exp.py
+            - Crypto:
+                - Multiple_Chaos_Maps:
+                    - Scrips/CTF_quiz/Crypto/Multiple_Chaos_Maps/exp.md
+                    - Scrips/CTF_quiz/Crypto/Multiple_Chaos_Maps/chaos.md
+            - Misc:
+                - Chaos_and_Pic:
+                    - Scrips/CTF_quiz/Misc/Chaos_and_Pic/chaos.md
         - Setup:
             - Scrips/Setup/Docker_Ubuntu1804.md
             - Scrips/Setup/Library_readin.md
@@ -50,8 +54,8 @@ nav:
             - Scrips/Setup/Ubuntu_Docker.md
             - Scrips/Setup/Ubuntu_zsh.md
             - Scrips/Setup/git_Setup.md
-            - Scrips/Setup/filetree.py
             - Scrips/Setup/Scrips_to_md.md
+            - Scrips/Setup/filetree.md
         - CTF_scrips:
             - Scrips/CTF_scrips/Caser_爆破.md
             - Scrips/CTF_scrips/RSA_常见.md
