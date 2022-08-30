@@ -18,12 +18,12 @@ for f1 in File:
     s += f1 + "\n\n"
 print(s)
 os.system("rm 1.txt")
-
+s = s[:-1].replace('\n', '\n\n')
 f = open("docs/index.md", "r+", encoding="utf-8")
 content = f.read()
 i = content.find("Tree:\n") + 6
 j = content.find("\n## Every time")
-content = content[:i] + "\n" + s[:-1]  + content[j:]
+content = content[:i] + "\n" + s + content[j:]
 f.close()
 fw = open("docs/index.md", 'w+', encoding="utf-8")
 fw.write(content)
