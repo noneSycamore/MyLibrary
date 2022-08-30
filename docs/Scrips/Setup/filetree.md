@@ -1,3 +1,5 @@
+# filetree
+```python
 import os
 
 path = "docs"
@@ -28,3 +30,5 @@ f.close()
 fw = open("docs/index.md", 'w+', encoding="utf-8")
 fw.write(content)
 fw.close()
+
+```
