@@ -12,9 +12,12 @@ Math_modeling
 Scrips
 ├── CTF_quiz
 │   ├── Crypto
-│   │   └── Multiple_Chaos_Maps
-│   │       ├── chaos.md
-│   │       └── exp.md
+│   │   ├── Multiple_Chaos_Maps
+│   │   │   ├── chaos.md
+│   │   │   └── exp.md
+│   │   └── Random_predict
+│   │       ├── exp.md
+│   │       └── task.md
 │   └── Misc
 │       └── Chaos_and_Pic
 │           └── chaos.md

@@ -44,6 +44,9 @@ nav:
                 - Multiple_Chaos_Maps:
                     - Scrips/CTF_quiz/Crypto/Multiple_Chaos_Maps/exp.md
                     - Scrips/CTF_quiz/Crypto/Multiple_Chaos_Maps/chaos.md
+                - Random_predict:
+                    - Scrips/CTF_quiz/Crypto/Random_predict/task.md
+                    - Scrips/CTF_quiz/Crypto/Random_predict/exp.md
             - Misc:
                 - Chaos_and_Pic:
                     - Scrips/CTF_quiz/Misc/Chaos_and_Pic/chaos.md
