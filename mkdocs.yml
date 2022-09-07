@@ -50,10 +50,32 @@ nav:
                     - Scrips/CTF_quiz/Crypto/Random_predict/exp.md
             - Misc:
                 - Chaotic_pic:
-                    - Scrips/CTF_quiz/Misc/Chaotic_pic/pic.png
-                    - Scrips/CTF_quiz/Misc/Chaotic_pic/pic_origin.png
-                    - Scrips/CTF_quiz/Misc/Chaotic_pic/chaos.md
                     - Scrips/CTF_quiz/Misc/Chaotic_pic/exp.md
+                    - solve:
+                        - Scrips/CTF_quiz/Misc/Chaotic_pic/solve/1.png
+                        - Scrips/CTF_quiz/Misc/Chaotic_pic/solve/2.png
+                        - Scrips/CTF_quiz/Misc/Chaotic_pic/solve/task.png
+                        - Scrips/CTF_quiz/Misc/Chaotic_pic/solve/exp.md
+                    - Scrips/CTF_quiz/Misc/Chaotic_pic/task.png
+                    - prepare:
+                        - Scrips/CTF_quiz/Misc/Chaotic_pic/prepare/desktop.ini
+                        - make1:
+                            - Scrips/CTF_quiz/Misc/Chaotic_pic/prepare/make1/with_flag.png
+                            - Scrips/CTF_quiz/Misc/Chaotic_pic/prepare/make1/flag.txt
+                            - Scrips/CTF_quiz/Misc/Chaotic_pic/prepare/make1/origin.png
+                            - Scrips/CTF_quiz/Misc/Chaotic_pic/prepare/make1/LSB隐写.md
+                        - make2:
+                            - Scrips/CTF_quiz/Misc/Chaotic_pic/prepare/make2/flag_encrypt.png
+                            - Scrips/CTF_quiz/Misc/Chaotic_pic/prepare/make2/with_flag.png
+                            - Scrips/CTF_quiz/Misc/Chaotic_pic/prepare/make2/chaos.md
+                        - make3:
+                            - Scrips/CTF_quiz/Misc/Chaotic_pic/prepare/make3/flag_encrypt.png
+                            - Scrips/CTF_quiz/Misc/Chaotic_pic/prepare/make3/pic.txt
+                            - Scrips/CTF_quiz/Misc/Chaotic_pic/prepare/make3/read16.md
+                            - Scrips/CTF_quiz/Misc/Chaotic_pic/prepare/make3/LSB隐写.md
+                            - Scrips/CTF_quiz/Misc/Chaotic_pic/prepare/make3/zaiti.png
+                            - Scrips/CTF_quiz/Misc/Chaotic_pic/prepare/make3/LSB2.png
+                            - Scrips/CTF_quiz/Misc/Chaotic_pic/prepare/make3/lsb_clear.md
         - Setup:
             - Scrips/Setup/Docker_Ubuntu1804.md
             - Scrips/Setup/Library_readin.md

@@ -47,7 +47,7 @@ def decrypt():
     m, miu, omiga = [], [], []
     ta = timea1
     tb = timeb1
-    c, (w,h) = from_pic('pic.png')
+    c, (w,h) = from_pic('1.png')
     for ci in c:
         miu.append(LC((k1, k2), a_1, ta, 1))
         omiga.append(LC((k1, k2), b_1, tb, 0))
@@ -66,7 +66,7 @@ def decrypt():
         for j in range(h):
             img.putpixel((i,j), (m[k], m[k+1], m[k+2]))
             k += 3
-    img.save('1.png')
+    img.save('2.png')
 decrypt()
 
 ```

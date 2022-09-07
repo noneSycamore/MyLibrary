@@ -21,10 +21,32 @@ Scrips
 │   │       └── task.md
 │   └── Misc
 │       └── Chaotic_pic
-│           ├── chaos.md
 │           ├── exp.md
-│           ├── pic.png
-│           └── pic_origin.png
+│           ├── prepare
+│           │   ├── desktop.ini
+│           │   ├── make1
+│           │   │   ├── LSB隐写.md
+│           │   │   ├── flag.txt
+│           │   │   ├── origin.png
+│           │   │   └── with_flag.png
+│           │   ├── make2
+│           │   │   ├── chaos.md
+│           │   │   ├── flag_encrypt.png
+│           │   │   └── with_flag.png
+│           │   └── make3
+│           │       ├── LSB2.png
+│           │       ├── LSB隐写.md
+│           │       ├── flag_encrypt.png
+│           │       ├── lsb_clear.md
+│           │       ├── pic.txt
+│           │       ├── read16.md
+│           │       └── zaiti.png
+│           ├── solve
+│           │   ├── 1.png
+│           │   ├── 2.png
+│           │   ├── exp.md
+│           │   └── task.png
+│           └── task.png
 ├── CTF_scrips
 │   ├── Caser_爆破.md
 │   ├── RSA_常见.md
@@ -44,6 +66,7 @@ Scrips
 │   ├── git_Setup.md
 │   └── vimrc.md
 └── Starting.md
+
 ```
 
 ## Every time before using
